@@ -1,0 +1,152 @@
+<body id="bg">
+  <div class="page-wraper">
+    <div class="page-content">
+        <style>
+            .note{
+                text-align:center;
+                height:5px;
+                background: -webkit-linear-gradient(left,#00BBF0,#5757f8);
+                color: #fff;
+                font-weight: bold;
+                line-height:80px;
+            }
+            .form-content
+            {
+                padding: 5%;
+                border: 1px solid #ced4da;
+                margin-bottom:2%;
+            }
+            .form-control{
+                border-radius:1.5rem;
+            }
+            .btnSubmit
+            {
+                border:none;
+                border-radius:1.5rem;
+                padding:1%;
+                width:20%;
+                cursor:pointer;
+                background: #0062cc;
+                color:#fff;
+            }
+            input{
+                color:black !important;
+            }
+            .btnSubmit{
+                color:white !important;
+            }
+            #paytm{
+                display:none;
+            }
+        </style>
+        <div class="container register-form" style="display:block;" id="hideme">
+          <form  [formGroup] = "TechFiestaform">
+            <div class="form group">
+                <div class="note"></div>
+                <div class="form-content">
+                    <div class = "row">
+                        <div class = "col-md-6">
+                            <div class = "row">
+                                <div class = "col-md-4">
+                                    <div class = "form-group">
+                                        <input [class.is-invalid] = "TechFiestaform.get('firstname')?.invalid && TechFiestaform.get('firstname')?.touched" type = "text" class= "form-control" placeholder="First Name *" formControlName = "firstname" >
+                                        <small [class.d-none]="TechFiestaform.get('firstname')?.valid || TechFiestaform.get('firstname')?.untouched" class="text-danger">First Name is required</small>
+                                    </div>
+                                </div>
+                                <div class = "col-md-4">
+                                    <div class = "form-group">
+                                        <input [class.is-invalid] = "TechFiestaform.get('middlename')?.invalid && TechFiestaform.get('middlename')?.touched" type = "text" class= "form-control" placeholder="Middle Name *" formControlName = "middlename" >
+                                    </div>
+                                </div>
+                                <div class = "col-md-4">
+                                    <div class = "form-group">
+                                        <input [class.is-invalid] = "TechFiestaform.get('lastname')?.invalid && TechFiestaform.get('lastname')?.touched" type = "text" class= "form-control" placeholder="Last Name *" formControlName = "lastname">
+                                        <small [class.d-none]="TechFiestaform.get('lastname')?.valid || TechFiestaform.get('lastname')?.untouched" class="text-danger">last Name is required</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class ="form-group">
+                                <input [class.is-invalid] = "TechFiestaform.get('phone')?.invalid && TechFiestaform.get('phone')?.touched" type ="text" class ="form-control" placeholder ="Phone Number(10 Digits only)*" formControlName="phone" pattern="[6789][0-9]{9}" >
+                                <small [class.d-none]="TechFiestaform.get('phone')?.valid || TechFiestaform.get('phone')?.untouched" class="text-danger">phone is required</small>
+                            </div>
+                            <div class ="form-group">
+                                <input [class.is-invalid] = "TechFiestaform.get('email')?.invalid && TechFiestaform.get('email')?.touched" type ="email" class ="form-control" placeholder ="Email *" formControlName="email" >
+                                <small [class.d-none]="TechFiestaform.get('email')?.valid || TechFiestaform.get('email')?.untouched" class="text-danger">email is required</small>
+                            </div>
+                            <div class ="form-group">
+                                <input type ="text" class ="form-control" placeholder ="Education Eg. BCA,MCA,MCS*" formControlName ="edu" required>
+                            </div>
+                            <div class ="form-group">
+                                <input type ="text" class ="form-control" placeholder ="College/Company *" formControlName="college" value required>
+                            </div>
+                            <div class ="form-group">
+                                <input type ="text" class ="form-control" placeholder ="Mother's Profession *" formControlName="mprof" value required>
+                                 <br>
+                                <input type ="text" class ="form-control" placeholder ="Father's Profession *" formControlName="fprof" value required>
+                            </div>
+                        </div>
+                        <div class = "col-md-6">
+                            <div class ="form-group">
+                                <input [class.is-invalid] = "TechFiestaform.get('parentsphone')?.invalid && TechFiestaform.get('parentsphone')?.touched" type ="text" class ="form-control" placeholder ="Phone Number(10 Digits only)*" formControlName="parentsphone" pattern="[6789][0-9]{9}" >
+
+                            </div>
+                            <div class ="form-group">
+                                <input type ="text" class ="form-control" placeholder ="Current Address*" formControlName ="temporaryadress" value required>
+                            </div>
+                            <div class ="form-group">
+                                <input  [class.is-invalid] =  "TechFiestaform.get('permanentaddress')?.invalid && TechFiestaform.get('permanentaddress')?.touched" type ="text" class ="form-control" placeholder ="permanent Address*" formControlName ="permanentaddress" >
+                                Note : we may send documents at this address, so please write this correctly with pincode.
+                            </div>
+                            <div class ="form-group">
+                                <label class="control-label" for="batch" style ="font-size:20px;">Batch</label>                
+                                <div>
+                                    <select id ="batch" name="batch" class="form-control bs-select-hidden" style="color:black;">
+                                       <option>PPA</option>
+                                        <option>LB</option>
+                                        <option>LSP</option>
+                                     </select>    
+                                </div>
+                            </div>
+                            <div class = "form-group">
+                                <input [class.is-invalid] =  "TechFiestaform.get('amount')?.invalid && TechFiestaform.get('amount')?.touched" type="number" class="form-control" placeholder="Amount(Minimum 1000)*" min="1000" max="20000" formControlName="amount" >
+                                Note : we may send documents at this address, so please write this correctly with pincode.
+                                <!--<p style="color:black;"> Amount you want to pay for registration, minimum: Rs 500</p>-->
+                            </div>
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label class="control-label" for="batch" style="font-size:15px;">Payment Mode</label>
+                                    <br>
+                                    <label style ="color:black">
+                                       <input type="radio" name="pay" value="0">
+                                        Bank Transfer 
+                                    </label>
+                                    <div style="display:none">
+                                      <label style="color:black">
+                                          <input type="radio" name="pay" value="0">
+                                           Paytm 
+                                       </label>
+                                    </div>
+                                </div>
+                                <p style="Color:black;">
+                                    Note: whatsApp or Call Admin at 7499208475 for bank details. 
+                                    <b>Only pay FEES after calling and informing to admin!</b>
+                                </p>   
+                            </div>  
+                        </div>    
+                    </div>
+                    <br>
+                    <div class="form-group" id ="terms">
+                        <input style="display: inline-block;" type="checkbox" name="checkbox" formControlName="check" id="agree">
+                        I have read and agree to the terms and conditions
+                    </div>
+                    <input [disabled]="!TechFiestaform.valid"  style="display: block; color:blue; margin-left:auto; margin-right:auto; width:30%" type ="submit" id="clicks" class="btn btn-primary">
+                    <p style="text-align:center; color:red;">
+                      Note:your Registration is not complete until you pay the amount.
+                    </p>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>
+ </div>
+</body>
